@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Home{% endblock %}
+
+{% block body %}
+
+<h3><a href="{{path('app_add')}}">+Ajouter une tache </a></h3>
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Nom</th>
+      <th scope="col">Statut</th>
+      <th scope="col">Date</th>
+      <th scope="col">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+  {%for tache in taches%}
+    <tr>
+      <th scope="row">{{tache.title}}</th>
+      <td>{{tache.status}}</td>
+      <td>{{tache.Date | date('d/m/y')}}</td>
+      <td>
+            <a href="{{ path('app_edit', { 'id': tache.id }) }}" class="btn btn-primary btn-sm">Modifier</a>
+            <a href="{{ path('app_delete', { 'id': tache.id }) }}" class="btn btn-primary btn-sm">Supprimer</a>
+
+      </td>
+    </tr>
+    {%endfor%}
+    
+  </tbody>
+</table>
+
+
+
+{% endblock %}
